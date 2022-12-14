@@ -31,7 +31,11 @@
 
         e.preventDefault();
 
-        // This seems like a good place to do some stuff :)
+        if (this.focusedIdx === 0) {
+          this.focusedIdx = this.buttons.length - 1;
+        } else {
+          this.focusedIdx--;
+        }
 
         break;
 
@@ -42,22 +46,26 @@
 
         e.preventDefault();
 
-        // This seems like a good place to do some stuff :)
+        if (this.focusedIdx === this.buttons.length - 1) {
+          this.focusedIdx = 0;
+        } else {
+          this.focusedIdx++;
+        }
 
         break;
       }
 
     }
 
-    this.changeFocus(this.focusedIdx); // <-- Hmm, interesting...
+    this.changeFocus(this.focusedIdx);
   };
 
   RadioGroup.prototype.changeFocus = function(idx) {
-    // Set the old button to tabindex -1
+    // SET OLD BUTTON TO TABINDEX -1
     this.focusedButton.tabIndex = -1;
     this.focusedButton.removeAttribute('checked');
 
-    // Set the new button to tabindex 0 and focus it
+    // SET NEW BUTTON TO TABINDEX 0 AND FOCUS
     this.focusedButton = this.buttons[idx];
     this.focusedButton.tabIndex = 0;
     this.focusedButton.focus();
