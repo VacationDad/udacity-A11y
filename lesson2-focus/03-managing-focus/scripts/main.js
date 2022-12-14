@@ -19,6 +19,15 @@ page('/:slug', function(context) {
   newMenuItem.classList.add('is-active');
   newPage.classList.add('is-active');
 
+  //PREVENT FROM HAPPENING ON FIRST TIME
+  if (isFirstPage) {
+    isFirstPage = false;
+    return;
+  }
+
+  //MOVE FOCUS TO HEADER
+  newPage.querySelector('h2').focus();
+
 });
 
 page({
